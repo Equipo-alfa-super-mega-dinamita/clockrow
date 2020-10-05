@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Calendar;
 import java.util.List;
 
 import co.edu.unal.clockrow.R;
@@ -36,31 +37,22 @@ public class TaskActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mTaskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
-        mTaskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
-            @Override
-            public void onChanged(@Nullable final List<Task> tasks) {
-                adapter.setTasks(tasks);
-            }
-        });
+        mTaskViewModel.getAllTasks().observe(this, tasks -> adapter.setTasks(tasks));
 
         // Getting the fab
         FloatingActionButton fab = findViewById(R.id.fab_task);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TaskActivity.this, AddTaskActivity.class);
-                startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
-            }
+        fab.setOnClickListener(view -> {
+            Intent intent = new Intent(TaskActivity.this, AddTaskActivity.class);
+            startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
         });
-
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Task task = new Task(data.getStringExtra(AddTaskActivity.EXTRA_REPLY));
+            Task task = new Task(data.getStringExtra(AddTaskActivity.EXTRA_REPLY),
+                       "Descripción pendiente", Calendar.getInstance().getTime());
             mTaskViewModel.insert(task);
         } else {
             Toast.makeText(

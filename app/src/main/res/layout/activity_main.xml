@@ -7,7 +7,7 @@
     tools:context=".view.activity.MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textTaskName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -27,7 +27,7 @@
         android:layout_marginTop="8dp"
         android:onClick="sendMessage"
         android:text="Button"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textTaskName"
         tools:layout_editor_absoluteX="166dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

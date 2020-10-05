@@ -5,7 +5,8 @@
 
 
     //Task strings
-    <string name="hint_word">Nueva tarea...</string>
+    <string name="hint_task_name"> Nueva tarea... </string>
+    <string name="hint_task_description">Agrega una descripción.</string>
     <string name="button_save">Guardar</string>
     <string name="empty_not_saved"> No se puede guardar una tarea sin nombre.</string>
 </resources>

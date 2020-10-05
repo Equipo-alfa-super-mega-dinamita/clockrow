@@ -8,6 +8,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -41,17 +44,17 @@ public abstract class TaskRoomDB extends RoomDatabase {
 
     private static RoomDatabase.Callback sRoomDataBaseCallback = new RoomDatabase.Callback(){
         @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
                 TaskDao dao = INSTANCE.taskDao();
                 dao.deleteAll();
 
-                Task task = new Task("Hello");
+                Task task = new Task("Hello", "It's me",  Calendar.getInstance().getTime());
                 dao.insert(task);
-                task = new Task("World");
+                task = new Task("World", "Zaaaaaaaaaa", Calendar.getInstance().getTime());
                 dao.insert(task);
             });
         }

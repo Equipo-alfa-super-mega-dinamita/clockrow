@@ -1,6 +1,7 @@
 package co.edu.unal.clockrow.view.components;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import co.edu.unal.clockrow.R;
 import co.edu.unal.clockrow.logic.Task;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
+
+    private static final String TAG = "TaskListAdapter";
 
     private final LayoutInflater mInflater;
     private List<Task> mTasks;
@@ -34,10 +37,10 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         if (mTasks != null) {
             Task current = mTasks.get(position);
             holder.taskItemView.setText(current.getName());
-        } else {
-            holder.taskItemView.setText(R.string.no_task);
+            Log.i(TAG, current.toString());
 
-        }
+        } else {
+            holder.taskItemView.setText(R.string.no_task);        }
     }
 
     public void setTasks(List<Task> tasks){
@@ -55,7 +58,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         private final TextView taskItemView;
         public TaskViewHolder(View itemView) {
             super(itemView);
-            this.taskItemView = itemView.findViewById(R.id.textView);
+            this.taskItemView = itemView.findViewById(R.id.textTaskName);
         }
     }
 }
