@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".view.activity.Task.AddTaskActivity" />
         <activity android:name=".view.activity.Task.TaskActivity" />
         <activity android:name=".view.activity.MainActivity">
+        <activity android:name=".view.activity.ClockActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
