@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Clockrow</string>
+    <string name="add_word">Añadir tarea</string>
+    <string name="no_task">No tienes tareas pendientes.</string>
+
+
+    //Task strings
+    <string name="hint_task_name"> Nueva tarea... </string>
+    <string name="hint_task_description">Agrega una descripción.</string>
+    <string name="button_save">Guardar</string>
+    <string name="empty_not_saved"> No se puede guardar una tarea sin nombre.</string>
 </resources>
