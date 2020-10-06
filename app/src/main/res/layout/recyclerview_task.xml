@@ -33,7 +33,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textTaskName"
+                android:id="@+id/task_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -43,7 +43,7 @@
                 android:textSize="22sp"/>
 
             <TextView
-                android:id="@+id/txtTaskDesc"
+                android:id="@+id/task_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -51,18 +51,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
+                android:height="70sp"
                 android:maxLines="1" />
 
-            <TextView
-                android:id="@+id/txtCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/colorPrimary" />
-
             <RatingBar
-                style="?android:attr/ratingBarStyleIndicator"
+                android:id="@+id/task_rating_bar_difficulty"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -73,6 +67,17 @@
                 android:progressBackgroundTint="@android:color/secondary_text_dark_nodisable"
                 android:progressTint="@color/colorPrimary"
                 />
+
+            <TextView
+                android:id="@+id/task_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"/>
+
+
         </LinearLayout>
     </RelativeLayout>
 

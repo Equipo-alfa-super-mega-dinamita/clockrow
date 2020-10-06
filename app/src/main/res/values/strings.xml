@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Clockrow</string>
     <string name="add_word">Añadir tarea</string>
@@ -9,4 +10,21 @@
     <string name="hint_task_description">Agrega una descripción.</string>
     <string name="button_save">Guardar</string>
     <string name="empty_not_saved"> No se puede guardar una tarea sin nombre.</string>
+    <string name="no_desc">Prueba a crear la tarea antes.</string>
+    <string name="no_priority">Sin prioridad</string>
+    <string name="add_date">¿Para cuándo?</string>
+    <string name="difficulty">Dificultad</string>
+    <string name="name">Nombre de la tarea</string>
+    <string name="description">Descripción</string>
+    <string name="priority">Prioridad</string>
+    <string name="duetime">Fecha de entrega</string>
+
+    <string-array name="priorities">
+        <item>Urgente</item>
+        <item>Alta</item>
+        <item>Media</item>
+        <item>Baja</item>
+        <item>Muy baja</item>
+    </string-array>
+
 </resources>

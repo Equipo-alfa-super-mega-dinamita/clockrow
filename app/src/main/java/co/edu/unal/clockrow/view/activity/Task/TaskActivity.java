@@ -15,7 +15,9 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import co.edu.unal.clockrow.R;
 import co.edu.unal.clockrow.data.Task.TaskViewModel;
@@ -51,10 +53,17 @@ public class TaskActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Task task = new Task(data.getStringExtra(AddTaskActivity.EXTRA_REPLY),
-                       "Descripción pendiente", Calendar.getInstance().getTime());
+            Task task = new Task(Objects.requireNonNull(data.getStringExtra(AddTaskActivity.EXTRA_REPLY_NAME)),
+                                data.getStringExtra(AddTaskActivity.EXTRA_REPLY_DESCR),
+                    (Date) Objects.requireNonNull(data.getSerializableExtra(AddTaskActivity.EXTRA_REPLY_DATE)),
+                    Calendar.getInstance().getTime(),
+                    data.getFloatExtra(AddTaskActivity.EXTRA_REPLY_DIFFICULTY, 0f),
+                    Objects.requireNonNull(data.getStringExtra(AddTaskActivity.EXTRA_REPLY_PRIORITY)));
+
             mTaskViewModel.insert(task);
+
         } else {
+
             Toast.makeText(
                     getApplicationContext(),
                     R.string.empty_not_saved,

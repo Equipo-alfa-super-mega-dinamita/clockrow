@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textSize="20sp"
+        android:padding="@dimen/big_padding"
+        android:textColor="@android:color/background_dark"
+        />
 
     <EditText
         android:id="@+id/edit_task_name"
@@ -15,6 +26,15 @@
         android:layout_margin="@dimen/small_padding"
         android:textSize="18sp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:textSize="20sp"
+        android:padding="@dimen/big_padding"
+        android:textColor="@android:color/background_dark"
+        />
+
     <EditText
         android:id="@+id/edit_task_description"
         android:layout_width="match_parent"
@@ -22,9 +42,76 @@
         android:minHeight="@dimen/min_height"
         android:fontFamily="sans-serif-light"
         android:hint="@string/hint_task_description"
-        android:inputType="textAutoComplete"
+        android:inputType="textCapSentences|textMultiLine"
         android:layout_margin="@dimen/small_padding"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:maxLength="128"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/difficulty"
+        android:textSize="20sp"
+        android:padding="@dimen/big_padding"
+        android:textColor="@android:color/background_dark"
+        />
+
+    <RatingBar
+        android:id="@+id/task_difficulty_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:isIndicator="false"
+        style="?android:attr/ratingBarStyleIndicator"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/priority"
+        android:textSize="20sp"
+        android:padding="@dimen/big_padding"
+        android:textColor="@android:color/background_dark"
+        />
+
+
+    <Spinner
+        android:id="@+id/task_priority_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/big_padding"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/duetime"
+        android:textSize="20sp"
+        android:padding="@dimen/big_padding"
+        android:textColor="@android:color/background_dark"
+        />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/task_calendar_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_baseline_calendar_today_24"
+        android:text="@string/add_date"
+        android:layout_gravity="center_horizontal"
+
+        />
+
+    <TextView
+        android:id="@+id/DEBUG_DATE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:padding="@dimen/big_padding"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/background_dark"
+        />
 
     <Button
         android:id="@+id/button_save"
