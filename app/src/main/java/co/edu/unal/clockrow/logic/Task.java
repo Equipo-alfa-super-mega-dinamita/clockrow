@@ -6,15 +6,14 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
 
 import co.edu.unal.clockrow.util.TimestampConverter;
 
 @Entity(tableName = "tasks")
-public class Task {
-
-
+public class Task implements Serializable {
 
     @NonNull
     @PrimaryKey(autoGenerate = true)

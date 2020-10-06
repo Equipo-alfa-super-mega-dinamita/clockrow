@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import co.edu.unal.clockrow.R;
+import co.edu.unal.clockrow.logic.Task;
 import co.edu.unal.clockrow.logic.clock.TimeListener;
+import co.edu.unal.clockrow.view.components.TaskListAdapter;
 import co.edu.unal.clockrow.viewmodel.ClockViewModel;
 
 public class ClockActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,6 +22,8 @@ public class ClockActivity extends AppCompatActivity implements View.OnClickList
     private Button resetButton;
     private ClockViewModel clockViewModel;
     private static final String TAG = "ClockActivity";
+
+    private TextView taskTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,14 @@ public class ClockActivity extends AppCompatActivity implements View.OnClickList
         pauseButton.setOnClickListener((View.OnClickListener)this);
         resetButton.setOnClickListener((View.OnClickListener)this);
         clockText.setText(clockViewModel.getTime());
+
+        //Task
+        Task task = (Task) getIntent().getSerializableExtra(TaskListAdapter.TASK_EXTRA_ID);
+        taskTitle = findViewById(R.id.task_title);
+        taskTitle.setText(task.getName());
+
+
+
 
     }
 

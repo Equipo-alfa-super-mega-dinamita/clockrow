@@ -63,7 +63,6 @@ public class TaskActivity extends AppCompatActivity {
             mTaskViewModel.insert(task);
 
         } else {
-
             Toast.makeText(
                     getApplicationContext(),
                     R.string.empty_not_saved,
