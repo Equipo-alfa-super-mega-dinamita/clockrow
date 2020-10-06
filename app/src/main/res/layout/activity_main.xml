@@ -21,13 +21,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:onClick="sendMessage"
-        android:text="Button"
-        app:layout_constraintTop_toBottomOf="@+id/textTaskName"
-        tools:layout_editor_absoluteX="166dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:text="Tasks"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTaskName" />
+
+    <Button
+        android:id="@+id/buttonClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Clock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonTask"
+        app:layout_constraintTop_toBottomOf="@+id/textTaskName" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

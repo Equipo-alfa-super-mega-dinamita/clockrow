@@ -12,8 +12,8 @@
 
         <activity android:name=".view.activity.Task.AddTaskActivity" />
         <activity android:name=".view.activity.Task.TaskActivity" />
+        <activity android:name=".view.activity.ClockActivity"/>
         <activity android:name=".view.activity.MainActivity">
-        <activity android:name=".view.activity.ClockActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
