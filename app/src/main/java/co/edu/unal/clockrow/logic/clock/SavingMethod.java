@@ -12,7 +12,7 @@ public class SavingMethod extends Clock {
     private static final String TAG = "SavingMethod";
 
     public SavingMethod() {
-        super(30000, 6000, 900000);
+        super(3000000, 600000, 900000);
         setRunning(false);
         sessionsCount = 0;
         mWorkTimeLeftInMillis = getWorkTime();

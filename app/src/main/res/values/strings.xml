@@ -18,6 +18,9 @@
     <string name="description">Descripción</string>
     <string name="priority">Prioridad</string>
     <string name="duetime">Fecha de entrega</string>
+    <string name="method_pomododoro">Pomodoro</string>
+    <string name="method_saving">Método del ahorro</string>
+    <string name="method_marathon">Método de la maratón</string>
 
     <string-array name="priorities">
         <item>Urgente</item>

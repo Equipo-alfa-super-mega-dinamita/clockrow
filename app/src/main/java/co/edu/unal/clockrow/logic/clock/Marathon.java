@@ -11,7 +11,7 @@ public class Marathon extends Clock {
     private boolean isObligatoryBreak;
 
     public Marathon() {
-        super(60000, 300000, 900000);
+        super(7200000, 300000, 900000);
         setRunning(false);
         setUpMillis();
     }

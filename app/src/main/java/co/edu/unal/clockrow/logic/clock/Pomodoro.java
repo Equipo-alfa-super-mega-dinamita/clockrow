@@ -12,7 +12,7 @@ public class Pomodoro extends Clock {
 
 
     public Pomodoro() {
-        super(15000, 3000, 900000);
+        super(1500000, 300000, 900000);
         setRunning(false);
         sessionsCount = 0;
         setUptMillis();

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/method_pomododoro"
+        android:title="@string/method_pomododoro"/>
+    <item android:id="@+id/method_saving"
+        android:title="@string/method_saving"/>
+    <item android:id="@+id/method_marathon"
+        android:title="@string/method_marathon"/>
+</menu>

@@ -1,7 +1,11 @@
 package co.edu.unal.clockrow.viewmodel;
 
+import android.content.Context;
+import android.media.MediaPlayer;
+
 import androidx.lifecycle.ViewModel;
 
+import co.edu.unal.clockrow.R;
 import co.edu.unal.clockrow.logic.clock.Clock;
 import co.edu.unal.clockrow.logic.clock.ClockStates;
 import co.edu.unal.clockrow.logic.clock.Marathon;
@@ -16,7 +20,10 @@ public class ClockViewModel extends ViewModel {
     private Pomodoro mPomodoro;
     private SavingMethod mSavingMethod;
     private Marathon mMarathon;
-    private TimeControlMethod method = TimeControlMethod.MARATHON;
+    private TimeControlMethod method = TimeControlMethod.POMODORO;
+
+
+    private Context ctx;
 
     public String getCurrentTime() {
         return currentTime;
@@ -27,7 +34,21 @@ public class ClockViewModel extends ViewModel {
     }
 
     public void setMethod(TimeControlMethod method) {
+
         this.method = method;
+        switch (method) {
+            case POMODORO:
+                currentTime = Clock.clockText(mPomodoro.getWorkTime());
+                break;
+            case SAVING_METHOD:
+                currentTime = Clock.clockText(mSavingMethod.getWorkTime());
+                break;
+            case MARATHON:
+                currentTime = Clock.clockText(mMarathon.getWorkTimeLeftInMillisAux());
+                break;
+        }
+
+
     }
 
     private static final String TAG = "ClockViewModel";
@@ -48,6 +69,10 @@ public class ClockViewModel extends ViewModel {
                 currentTime = Clock.clockText(mMarathon.getWorkTimeLeftInMillisAux());
                 break;
         }
+    }
+
+    public void setCtx(Context ctx) {
+        this.ctx = ctx;
     }
 
     public String getAlternativeTime() {
@@ -84,6 +109,8 @@ public class ClockViewModel extends ViewModel {
             public void onTimerFinish(String response) {
                 currentTime = response;
                 listener.onTimerFinish(currentTime);
+                MediaPlayer mp = MediaPlayer.create(ctx, R.raw.end);
+                mp.start();
             }
         });
     }
@@ -100,6 +127,8 @@ public class ClockViewModel extends ViewModel {
             public void onTimerFinish(String response) {
                 currentTime = response;
                 listener.onTimerFinish(currentTime);
+                MediaPlayer mp = MediaPlayer.create(ctx, R.raw.end);
+                mp.start();
             }
         });
     }
@@ -116,6 +145,8 @@ public class ClockViewModel extends ViewModel {
             public void onTimerFinish(String response) {
                 currentTime = response;
                 listener.onTimerFinish(currentTime);
+                MediaPlayer mp = MediaPlayer.create(ctx, R.raw.end);
+                mp.start();
             }
         });
     }
