@@ -18,6 +18,7 @@ public class ClockActivity extends AppCompatActivity implements View.OnClickList
     private Button startButton;
     private Button pauseButton;
     private Button resetButton;
+    private Button shiftButton;
     private ClockViewModel clockViewModel;
     private static final String TAG = "ClockActivity";
 
@@ -36,11 +37,15 @@ public class ClockActivity extends AppCompatActivity implements View.OnClickList
         startButton = findViewById(R.id.startButtonClock);
         pauseButton = findViewById(R.id.puaseButtonClock);
         resetButton = findViewById(R.id.resetButtonClock);
+        shiftButton = findViewById(R.id.shift);
+
         //listener
-        startButton.setOnClickListener((View.OnClickListener)this);
-        pauseButton.setOnClickListener((View.OnClickListener)this);
-        resetButton.setOnClickListener((View.OnClickListener)this);
-        clockText.setText(clockViewModel.getTime());
+        startButton.setOnClickListener((View.OnClickListener) this);
+        pauseButton.setOnClickListener((View.OnClickListener) this);
+        resetButton.setOnClickListener((View.OnClickListener) this);
+        shiftButton.setOnClickListener(this);
+        //set Initial time
+        clockText.setText(clockViewModel.getCurrentTime());
 
     }
 
@@ -48,28 +53,32 @@ public class ClockActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.startButtonClock:
-                Log.d(TAG, "onClick: start");
                 clockViewModel.start(new TimeListener<String>() {
                     @Override
                     public void onTimerResponse(String response) {
-                        clockText.setText(clockViewModel.getTime());
+                        clockText.setText(clockViewModel.getCurrentTime());
                     }
 
                     @Override
                     public void onTimerFinish(String response) {
-                        clockText.setText(clockViewModel.getTime());
-                        Log.d(TAG,clockViewModel.getTime());
+                        clockText.setText(clockViewModel.getCurrentTime());
+                        Log.d(TAG, clockViewModel.getCurrentTime());
                     }
                 });
                 break;
             case R.id.puaseButtonClock:
                 clockViewModel.pause();
-                clockText.setText(clockViewModel.getTime());
+                clockText.setText(clockViewModel.getCurrentTime());
                 break;
             case R.id.resetButtonClock:
                 clockViewModel.reset();
-                clockText.setText(clockViewModel.getTime());
+                clockText.setText(clockViewModel.getCurrentTime());
+                break;
+            case R.id.shift:
+                clockViewModel.shiftTime();
+                clockText.setText(clockViewModel.getCurrentTime());
                 break;
         }
     }
+
 }

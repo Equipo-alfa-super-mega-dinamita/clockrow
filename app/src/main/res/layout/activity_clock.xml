@@ -10,7 +10,7 @@
         android:id="@+id/timeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="200dp"
         android:text="00:00"
         android:textSize="64sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,4 +46,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/puaseButtonClock" />
+
+    <Button
+        android:id="@+id/shift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="shift"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resetButtonClock" />
 </androidx.constraintlayout.widget.ConstraintLayout>

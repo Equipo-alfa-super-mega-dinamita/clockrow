@@ -3,17 +3,23 @@ package co.edu.unal.clockrow.viewmodel;
 import androidx.lifecycle.ViewModel;
 
 import co.edu.unal.clockrow.logic.clock.Clock;
+import co.edu.unal.clockrow.logic.clock.ClockStates;
+import co.edu.unal.clockrow.logic.clock.Marathon;
 import co.edu.unal.clockrow.logic.clock.Pomodoro;
+import co.edu.unal.clockrow.logic.clock.SavingMethod;
 import co.edu.unal.clockrow.logic.clock.TimeControlMethod;
 import co.edu.unal.clockrow.logic.clock.TimeListener;
 
 public class ClockViewModel extends ViewModel {
-    private String time;
+    private String currentTime;
+    private String alternativeTime;
     private Pomodoro mPomodoro;
-    private TimeControlMethod method = TimeControlMethod.POMODORO;
+    private SavingMethod mSavingMethod;
+    private Marathon mMarathon;
+    private TimeControlMethod method = TimeControlMethod.MARATHON;
 
-    public String getTime() {
-        return time;
+    public String getCurrentTime() {
+        return currentTime;
     }
 
     public TimeControlMethod getMethod() {
@@ -24,17 +30,28 @@ public class ClockViewModel extends ViewModel {
         this.method = method;
     }
 
+    private static final String TAG = "ClockViewModel";
+
+    /*Constructor*/
     public ClockViewModel() {
         this.mPomodoro = new Pomodoro();
+        this.mSavingMethod = new SavingMethod();
+        this.mMarathon = new Marathon();
         switch (method) {
             case POMODORO:
-                time = Clock.clockText(mPomodoro.getWorkTime());
-                break;
-            case MARATHON:
+                currentTime = Clock.clockText(mPomodoro.getWorkTime());
                 break;
             case SAVING_METHOD:
+                currentTime = Clock.clockText(mSavingMethod.getWorkTime());
+                break;
+            case MARATHON:
+                currentTime = Clock.clockText(mMarathon.getWorkTimeLeftInMillisAux());
                 break;
         }
+    }
+
+    public String getAlternativeTime() {
+        return alternativeTime;
     }
 
     public Pomodoro getPomodoro() {
@@ -59,34 +76,102 @@ public class ClockViewModel extends ViewModel {
         mPomodoro.start(new TimeListener<String>() {
             @Override
             public void onTimerResponse(String response) {
-                time = response;
-                listener.onTimerResponse(time);
+                currentTime = response;
+                listener.onTimerResponse(currentTime);
             }
 
             @Override
             public void onTimerFinish(String response) {
-                time = response;
-                listener.onTimerFinish(time);
+                currentTime = response;
+                listener.onTimerFinish(currentTime);
             }
         });
     }
 
     private void startMarathon(final TimeListener<String> listener) {
-        //TODO
+        mMarathon.start(new TimeListener<String>() {
+            @Override
+            public void onTimerResponse(String response) {
+                currentTime = response;
+                listener.onTimerResponse(currentTime);
+            }
+
+            @Override
+            public void onTimerFinish(String response) {
+                currentTime = response;
+                listener.onTimerFinish(currentTime);
+            }
+        });
     }
 
     private void startSavingMethod(final TimeListener<String> listener) {
-        //TODO
+        mSavingMethod.start(new TimeListener<String>() {
+            @Override
+            public void onTimerResponse(String response) {
+                currentTime = response;
+                listener.onTimerResponse(currentTime);
+            }
+
+            @Override
+            public void onTimerFinish(String response) {
+                currentTime = response;
+                listener.onTimerFinish(currentTime);
+            }
+        });
     }
 
     public void pause() {
-        mPomodoro.pause();
-        time = Clock.clockText(mPomodoro.getTimeLeftInMillis());
+        switch (method) {
+            case POMODORO:
+                mPomodoro.pause();
+                currentTime = Clock.clockText(mPomodoro.getTimeLeftInMillis());
+                break;
+            case SAVING_METHOD:
+                mSavingMethod.pause();
+                currentTime = Clock.clockText(mSavingMethod.getTimeLeftInMillis());
+                break;
+            case MARATHON:
+                mMarathon.pause();
+
+                if (mMarathon.getCurrentState() == ClockStates.WORK){
+                    currentTime = Clock.clockText(mMarathon.getWorkTimeLeftInMillisAux());
+                }else {
+                    currentTime = Clock.clockText(mMarathon.getBreakTimeLeftInMillisAux());
+                }
+                break;
+        }
+
+
     }
 
     public void reset() {
-        mPomodoro.reset();
-        time = Clock.clockText(mPomodoro.getTimeLeftInMillis());
+        switch (method) {
+            case POMODORO:
+                currentTime = Clock.clockText(mPomodoro.getTimeLeftInMillis());
+                mPomodoro.reset();
+                break;
+            case SAVING_METHOD:
+                mSavingMethod.reset();
+                currentTime = Clock.clockText(mSavingMethod.getTimeLeftInMillis());
+                break;
+            case MARATHON:
+                mMarathon.reset();
+                currentTime = Clock.clockText(mMarathon.getWorkTimeLeftInMillisAux());
+                break;
+        }
+    }
+
+    public void shiftTime() {
+        switch (method) {
+            case SAVING_METHOD:
+                mSavingMethod.shiftState();
+                currentTime = Clock.clockText(mSavingMethod.getTimeLeftInMillis());
+                break;
+            case MARATHON:
+                mMarathon.shiftState();
+                currentTime = Clock.clockText(mMarathon.getTimeLeftInMillis());
+                break;
+        }
     }
 
 }
