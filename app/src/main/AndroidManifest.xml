@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="co.edu.unal.clockrow">
+    <!-- Include required permissions for Google Mobile Ads to run. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -9,17 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".view.activity.Task.AddTaskActivity" />
-        <activity android:name=".view.activity.Task.TaskActivity" />
-        <activity android:name=".view.activity.ClockActivity"/>
-        <activity android:name=".view.activity.MainActivity">
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".view.activity.LoginActivity" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.activity.Task.AddTaskActivity" />
+        <activity android:name=".view.activity.Task.TaskActivity" />
+        <activity android:name=".view.activity.ClockActivity" />
+        <activity android:name=".view.activity.MainActivity" />
     </application>
 
 </manifest>

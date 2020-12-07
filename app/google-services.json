@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "129761540118",
+    "project_id": "krow-clockrow-ece47",
+    "storage_bucket": "krow-clockrow-ece47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129761540118:android:a5e62e9bbf834666ecdd37",
+        "android_client_info": {
+          "package_name": "co.edu.unal.clockrow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129761540118-mheljkke0lfip80fnp4usjrg6rcklmqm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.edu.unal.clockrow",
+            "certificate_hash": "33bc12b27003c4cc2571a7e640cf20b7e4dbbba0"
+          }
+        },
+        {
+          "client_id": "129761540118-s9h3pr78u69762afgh9hvbh31i460vql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4T-CAcUThjdc_9tlzaFi9ZouFcfgXSJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129761540118-s9h3pr78u69762afgh9hvbh31i460vql.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
