@@ -120,6 +120,6 @@
         android:background="@color/colorPrimary"
         android:text="@string/button_save"
         android:layout_margin="@dimen/big_padding"
-        android:textColor="@color/buttonLabel" />
+        android:textColor="@color/white" />
 
 </LinearLayout>

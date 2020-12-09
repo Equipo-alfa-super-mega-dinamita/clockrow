@@ -17,11 +17,11 @@ import co.edu.unal.clockrow.logic.clock.TimeListener;
 public class ClockViewModel extends ViewModel {
     private String currentTime;
     private String alternativeTime;
-    private Pomodoro mPomodoro;
-    private SavingMethod mSavingMethod;
-    private Marathon mMarathon;
+    private final Pomodoro mPomodoro;
+    private final SavingMethod mSavingMethod;
+    private final Marathon mMarathon;
     private TimeControlMethod method = TimeControlMethod.POMODORO;
-
+    private boolean mBreak;
 
     private Context ctx;
 
@@ -49,6 +49,23 @@ public class ClockViewModel extends ViewModel {
         }
 
 
+    }
+
+    public boolean ismBreak() {
+
+        switch (this.method) {
+            case POMODORO:
+                this.mBreak = mPomodoro.getCurrentState() == ClockStates.BREAK;
+                break;
+            case SAVING_METHOD:
+                this.mBreak = mSavingMethod.getCurrentState() == ClockStates.BREAK;
+                break;
+            case MARATHON:
+                this.mBreak = mMarathon.getCurrentState() == ClockStates.BREAK;
+                break;
+        }
+
+        return mBreak;
     }
 
     private static final String TAG = "ClockViewModel";
@@ -81,6 +98,14 @@ public class ClockViewModel extends ViewModel {
 
     public Pomodoro getPomodoro() {
         return mPomodoro;
+    }
+
+    public SavingMethod getSavingMethod() {
+        return mSavingMethod;
+    }
+
+    public Marathon getMarathon() {
+        return mMarathon;
     }
 
     public void start(final TimeListener<String> listener) {
@@ -204,5 +229,7 @@ public class ClockViewModel extends ViewModel {
                 break;
         }
     }
+
+
 
 }
