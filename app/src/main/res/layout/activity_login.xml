@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00FFFFFF"
+    android:backgroundTint="#00FFFFFF"
     tools:context=".view.activity.LoginActivity">
 
     <LinearLayout
@@ -28,6 +30,10 @@
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             android:typeface="normal" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
 
         <Space
             android:layout_width="match_parent"
@@ -61,6 +67,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Iniciar sesión" />
+
+        <ImageButton
+            android:id="@+id/googleLoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            app:srcCompat="@drawable/ic_search" />
 
         <Space
             android:layout_width="match_parent"

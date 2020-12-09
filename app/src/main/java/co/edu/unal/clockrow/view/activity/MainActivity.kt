@@ -1,5 +1,6 @@
 package co.edu.unal.clockrow.view.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -61,16 +62,43 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun logout() {
         FirebaseAuth.getInstance().signOut()
         onBackPressed()
+        val sharedPref= getSharedPreferences( getString(R.string.shrpref_file), Context.MODE_PRIVATE).edit()
+        sharedPref.clear()
+        sharedPref.apply()
+
+
+
     }
 
+
     private fun handleLogin(intent: Intent) {
-        val email = intent.getStringExtra("EMAIL") ?: "<>"
-        Toast.makeText(applicationContext, "Email $email", Toast.LENGTH_SHORT).show()
+        val email = intent.getStringExtra("EMAIL") ?: ""
+        val provider = intent.getStringExtra("PROVIDER") ?: ""
+        Toast.makeText(applicationContext, "Email $email, Provider $provider" , Toast.LENGTH_SHORT).show()
+
+        val sharedPref= getSharedPreferences( getString(R.string.shrpref_file), Context.MODE_PRIVATE)
+
+        with (sharedPref.edit()) {
+            putString(getString(R.string.user_email_shrpref), email)
+            putString(getString(R.string.user_provider_shrpref), provider)
+            apply()
+        }
+
     }
 
     private fun handleSignUp(intent: Intent) {
-        val email = intent.getStringExtra("EMAIL") ?: "<>"
-        Toast.makeText(applicationContext, "Email $email", Toast.LENGTH_SHORT).show()
+        val email = intent.getStringExtra("EMAIL") ?: ""
+        val provider = intent.getStringExtra("PROVIDER") ?: ""
+        Toast.makeText(applicationContext, "Email $email, Provider $provider" , Toast.LENGTH_SHORT).show()
+
+        val sharedPref= getSharedPreferences( getString(R.string.shrpref_file), Context.MODE_PRIVATE)
+
+        with (sharedPref.edit()) {
+            putString(getString(R.string.user_email_shrpref), email)
+            putString(getString(R.string.user_provider_shrpref), provider)
+            apply()
+        }
+
     }
 
     private fun sendToLogin() {
@@ -84,14 +112,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val intent = Intent(this@MainActivity, TaskActivity::class.java)
 
-
         intent.putExtra(EXTRA_MESSAGE, "holo")
         startActivity(intent)
 
     }
-
-
-
 
 
     private fun testFirebase() {
@@ -102,10 +126,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun configView() {
+
         buttonTask = findViewById(R.id.buttonTask)
         buttonTask?.setOnClickListener(this)
-
-
 
     }
 

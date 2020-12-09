@@ -31,7 +31,11 @@
             android:textSize="24sp"
             android:typeface="normal" />
 
-    <Space
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -64,7 +68,20 @@
             android:layout_height="wrap_content"
             android:text="Registrarse" />
 
-    <Space
+
+        <ImageButton
+            android:id="@+id/googleSignUpButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            app:srcCompat="@drawable/ic_search" />
+
+        <Space
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 

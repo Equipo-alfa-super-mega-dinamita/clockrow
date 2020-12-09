@@ -13,8 +13,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import co.edu.unal.clockrow.view.activity.LoginActivity
 import co.edu.unal.clockrow.view.activity.MainActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.activity_sign_up.editTextEmail
+import kotlinx.android.synthetic.main.activity_sign_up.editTextPassword
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +64,19 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
+
+        googleSignUpButton.setOnClickListener {
+            val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build()
+
+            val googleClient = GoogleSignIn.getClient(this, googleConf)
+
+            startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
+
+        }
+
     }
 
     private fun showSignUpAlert() {
@@ -82,6 +100,9 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
+    companion object {
+        private const val GOOGLE_SIGN_IN: Int = 100000
+    }
 
 
 }

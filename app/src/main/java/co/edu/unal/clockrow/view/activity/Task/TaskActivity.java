@@ -44,6 +44,8 @@ public class TaskActivity extends AppCompatActivity {
             Intent intent = new Intent(TaskActivity.this, AddTaskActivity.class);
             startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
         });
+
+
     }
 
     @Override
