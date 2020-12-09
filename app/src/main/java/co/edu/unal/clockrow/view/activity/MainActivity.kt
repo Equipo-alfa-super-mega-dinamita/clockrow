@@ -12,9 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import co.edu.unal.clockrow.R
 import co.edu.unal.clockrow.view.activity.Task.TaskActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var buttonTask: ImageButton? = null
@@ -27,8 +30,35 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         configView()
 
         // Sidebar
+        configDrawer()
+
+        //
+        configAds()
+
+
+        intent?.let {
+            val source = it.getStringExtra("SOURCE")
+            when (source){
+                "SIGNUP" -> handleSignUp(it)
+                "LOGIN" -> handleLogin(it)
+            }
+            null
+        }
+
+    }
+
+    private fun configAds() {
+        MobileAds.initialize(this)
+
+        val adBuilder = AdRequest.Builder().build()
+        adView.loadAd(adBuilder)
+    }
+
+
+    private fun configDrawer(){
 
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.openSidebar, R.string.closeSidebar)
         drawerLayout.addDrawerListener(toggle!!)
         toggle.syncState()
@@ -45,16 +75,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.logout_item -> logout()
             }
             true
-        }
-
-
-        intent?.let {
-            val source = it.getStringExtra("SOURCE")
-            when (source){
-                "SIGNUP" -> handleSignUp(it)
-                "LOGIN" -> handleLogin(it)
-            }
-            null
         }
 
     }
