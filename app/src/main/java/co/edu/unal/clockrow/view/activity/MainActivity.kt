@@ -199,7 +199,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         for (task in taskList!!){
-            compactcalendar_view.addEvent(task?.let { createEvent(it) })
+            task?.let{ compactcalendar_view.addEvent(createEvent(it)) }
         }
 
     }
