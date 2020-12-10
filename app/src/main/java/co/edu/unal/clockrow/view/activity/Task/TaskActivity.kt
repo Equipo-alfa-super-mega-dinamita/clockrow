@@ -1,4 +1,4 @@
-    package co.edu.unal.clockrow.view.activity.Task
+package co.edu.unal.clockrow.view.activity.Task
 
 import android.content.Context
 import android.content.Intent
@@ -118,17 +118,6 @@ class TaskActivity : AppCompatActivity() {
                 R.id.logout_item -> logout()
             }
             true
-        }
-
-        val menu = navigationView.menu
-        if ( getSharedPreferences( getString(R.string.shrpref_file), Context.MODE_PRIVATE).getString(getString(R.string.user_email_shrpref), null) != null )
-        {
-            menu.findItem(R.id.logout_item).isVisible = true
-            menu.findItem(R.id.login_item).isVisible = false
-        }
-        else {
-            menu.findItem(R.id.login_item).isVisible = true
-            menu.findItem(R.id.logout_item).isVisible = false
         }
 
     }
