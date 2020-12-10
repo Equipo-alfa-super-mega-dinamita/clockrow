@@ -1,4 +1,4 @@
-package co.edu.unal.clockrow
+package co.edu.unal.clockrow.view.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +11,8 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import co.edu.unal.clockrow.view.activity.LoginActivity
-import co.edu.unal.clockrow.view.activity.MainActivity
+import co.edu.unal.clockrow.ProviderType
+import co.edu.unal.clockrow.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth

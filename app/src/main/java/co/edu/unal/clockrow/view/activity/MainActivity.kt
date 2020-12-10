@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun configDrawer(){
 
+
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.openSidebar, R.string.closeSidebar)
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId){
                 R.id.project_item -> sendToTasks()
-                R.id.analytics_item -> Toast.makeText(applicationContext, "Analytics", Toast.LENGTH_SHORT).show()
+                R.id.premium_item -> sendToPremium()
                 R.id.login_item -> sendToLogin()
                 R.id.logout_item -> logout()
             }
@@ -78,6 +79,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
     }
+
+
 
     private fun logout() {
         FirebaseAuth.getInstance().signOut()
@@ -119,6 +122,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             apply()
         }
 
+    }
+
+    private fun sendToPremium() {
+        Toast.makeText(applicationContext, "Premium", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this@MainActivity, PremiumActivity::class.java)
+
+        startActivity(intent)
     }
 
     private fun sendToLogin() {

@@ -72,4 +72,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:19.6.0'
 
 
+    // In-app Billing
+    implementation 'com.anjlab.android.iab.v3:library:1.0.44'
+    implementation 'com.google.android.gms:play-services-basement:17.5.0'
+
 }

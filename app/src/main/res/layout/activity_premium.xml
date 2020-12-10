@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    tools:context=".view.activity.PremiumActivity">
+
+    <!--    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>-->
+    <TextView
+        android:id="@+id/premiumTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:fontFamily="@font/orbitron_medium"
+        android:gravity="center_horizontal"
+        android:text="Premium"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/adsImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                app:srcCompat="@mipmap/ads" />
+
+            <TextView
+                android:id="@+id/adsPremiumText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/orbitron_medium"
+                android:paddingLeft="40dp"
+                android:text="Sin anuncios."
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/limitImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                app:srcCompat="@mipmap/limit" />
+
+            <TextView
+                android:id="@+id/limitPremiumText"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/orbitron_medium"
+                android:paddingLeft="40dp"
+                android:text="Sin limite de tareas."
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/backupImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                app:srcCompat="@mipmap/backup" />
+
+            <TextView
+                android:id="@+id/backupPremiumText"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/orbitron_medium"
+                android:paddingLeft="40dp"
+                android:text="Copias de seguridad en la nube."
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/upgradePremiumButton"
+            android:layout_width="250dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:backgroundTint="#FF6D00"
+            android:fontFamily="@font/orbitron_medium"
+            android:shadowColor="@color/colorPrimaryDark"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:text="¡Hazte premium!"
+            android:textSize="18sp"
+            app:cornerRadius="24dp" />
+    </RelativeLayout>
+
+</LinearLayout>
