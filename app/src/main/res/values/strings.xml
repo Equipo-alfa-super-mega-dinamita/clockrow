@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clockrow</string>
+    <string name="app_name">Krow</string>
     <string name="add_word">Añadir tarea</string>
     <string name="no_task">No tienes tareas pendientes.</string>
 
