@@ -1,10 +1,10 @@
-package co.edu.unal.clockrow
+package co.edu.unal.clockrow.view.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import co.edu.unal.clockrow.view.activity.MainActivity
+import co.edu.unal.clockrow.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

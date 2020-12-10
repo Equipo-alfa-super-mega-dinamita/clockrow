@@ -9,8 +9,9 @@
             android:icon="@drawable/ic_baseline_project_24"/>
 
         <item
-            android:id="@+id/analytics_item"
-            android:title="Estadísticas" />
+            android:id="@+id/premium_item"
+            android:title="Premium"
+            android:icon="@drawable/ic_baseline_grade_24"/>
     </group>
 
     <group>

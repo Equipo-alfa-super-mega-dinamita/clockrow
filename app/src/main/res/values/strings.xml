@@ -43,5 +43,6 @@
     <string name="user_email_shrpref">SHARED_PREF_EMAIL</string>
     <string name="user_provider_shrpref">SHARED_PREF_PROVIDER</string>
     <string name="shrpref_file">co.edu.unal.clockrow.SHARED_PREFERENCES</string>
+    <string name="purchase_error">La compra no se pudo completar.</string>
 
 </resources>

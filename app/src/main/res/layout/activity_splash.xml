@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity"
-    android:background="@drawable/gradient">
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    tools:context=".view.activity.SplashActivity">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="194dp" />
 
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_horizontal|center_vertical"
+        android:src="@mipmap/logo_krow" />
+
+    <TextView
+        android:id="@+id/appNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/crow"
-        android:contentDescription="Logo (placeholder)" />
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_weight="1"
+        android:fontFamily="@font/orbitron_medium"
+        android:text="Krow"
+        android:textColor="@color/colorSecondaryLight"
+        android:textSize="60sp" />
 
-</RelativeLayout>
+</LinearLayout>
