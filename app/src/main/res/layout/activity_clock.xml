@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:text="00:00"
         android:textColor="@color/white"
-        android:textSize="50sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
         app:layout_constraintEnd_toEndOf="@+id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
