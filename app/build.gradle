@@ -83,4 +83,7 @@ dependencies {
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
     implementation 'com.google.android.gms:play-services-basement:17.5.0'
 
+    //Calendar
+    implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
+
 }
