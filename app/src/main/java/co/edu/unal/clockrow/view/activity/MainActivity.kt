@@ -19,6 +19,7 @@ import co.edu.unal.clockrow.logic.Task
 import co.edu.unal.clockrow.view.activity.Task.TaskActivity
 import co.edu.unal.clockrow.view.components.TaskListAdapter
 import co.edu.unal.clockrow.viewmodel.ClockViewModel
+import com.github.sundeepk.compactcalendarview.CompactCalendarView
 import com.github.sundeepk.compactcalendarview.domain.Event
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -182,24 +183,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun configView() {
         mTaskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
-        compactcalendar_view.setUseThreeLetterAbbreviation(true)
-        val e: Event = Event(Color.GREEN,1607590310L,"info")
-        compactcalendar_view.addEvent(e)
-        /*
+        val compactCalendarView: CompactCalendarView =  findViewById(R.id.compactcalendar_view);
+        compactCalendarView.setUseThreeLetterAbbreviation(true)
+        //val e: Event = Event(Color.GREEN,1607685860000L,"info")
+       // compactcalendar_view.addEvent(e)
+
         val adapter = TaskListAdapter(this)
         taskList = emptyList()
-        mTaskViewModel!!.allTasks.observe(this, { tasks: List<Task?>? ->
+        mTaskViewModel!!.allTasks.observe(this) { tasks: List<Task?>? ->
             adapter.setTasks(tasks)
             tasks?.let {
                 taskList = it.toMutableList()
                 backupTasks()
             }
-        })
+        }
 
         for (task in taskList!!){
             compactcalendar_view.addEvent(task?.let { createEvent(it) })
         }
-*/
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -215,7 +217,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createEvent(task: Task): Event {
         val name = task.name
-        val date = task.dueDate.time
+        val date = task.dueDate.time * 1000
         Log.e(TAG, "$name $date")
         return Event(Color.BLUE, date, name)
     }
@@ -242,4 +244,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+}
+
+private fun Any.observe(mainActivity: MainActivity, function: (List<Task?>?) -> Unit?) {
+
 }
