@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.activity.Task.TaskActivity"
+    android:id="@+id/taskDrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.Task.TaskActivity">
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_task"
@@ -28,4 +35,29 @@
         android:contentDescription="@string/add_word"
         android:src="@drawable/ic_add_task"/>
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="ca-app-pub-8300899048531479/9374461400"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fab_task" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu_header"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true" />
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

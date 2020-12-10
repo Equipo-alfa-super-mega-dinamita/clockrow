@@ -15,11 +15,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import co.edu.unal.clockrow.ProviderType
 import co.edu.unal.clockrow.R
+import co.edu.unal.clockrow.logic.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.editTextEmail
 import kotlinx.android.synthetic.main.activity_login.editTextPassword
@@ -27,6 +29,7 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class LoginActivity : AppCompatActivity() {
 
+    private val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -61,10 +64,11 @@ class LoginActivity : AppCompatActivity() {
 
         val sharedPref= getSharedPreferences( getString(R.string.shrpref_file), Context.MODE_PRIVATE)
         val email = sharedPref.getString(getString(R.string.user_email_shrpref), null)
+        val username = sharedPref.getString(getString(R.string.user_username_shrpref), null)
         val provider = sharedPref.getString(getString(R.string.user_provider_shrpref), null)
 
-        if (email != null && provider != null) {
-            sendToHome(email, ProviderType.valueOf(provider))
+        if (email != null && provider != null && username != null) {
+            sendToHome(email, username, ProviderType.valueOf(provider))
         }
     }
 
@@ -77,7 +81,9 @@ class LoginActivity : AppCompatActivity() {
                         editTextPassword.text.toString()).addOnCompleteListener {
 
                     if (it.isSuccessful) {
-                        sendToHome(it.result?.user?.email ?: "", ProviderType.EMAIL)
+                        db.collection("users").document(it.result?.user?.email ?: "").get().addOnCompleteListener { user ->
+                            sendToHome(it.result?.user?.email ?: "",user.result?.getString("username") ?: "" ,ProviderType.EMAIL)
+                        }
                     } else {
                         showLoginAlert()
                     }
@@ -99,14 +105,28 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun sendToHome(email: String, provider: ProviderType) {
+    private fun sendToHome(email: String, username: String, provider: ProviderType) {
+
+        getSharedPreferences( getString(R.string.shrpref_file), Context.MODE_PRIVATE).edit().putBoolean(getString(R.string.user_premium_shrpref), false).apply()
+        verifyPremium(email)
 
         val homeIntent = Intent(this@LoginActivity, MainActivity::class.java).apply {
             putExtra("EMAIL", email)
+            putExtra("USERNAME", username)
             putExtra("PROVIDER", provider.name)
             putExtra("SOURCE", "LOGIN")
         }
         startActivity(homeIntent)
+    }
+
+    private fun verifyPremium(email: String) {
+        val sharedPref= getSharedPreferences( getString(R.string.shrpref_file), Context.MODE_PRIVATE)
+        db.collection("users").document(email).get().addOnCompleteListener {
+            with (sharedPref.edit()) {
+                putBoolean(getString(R.string.user_premium_shrpref), it.result.getBoolean("premium")?: false)
+                commit()
+            }
+        }
     }
 
     private fun showLoginAlert() {
@@ -137,7 +157,8 @@ class LoginActivity : AppCompatActivity() {
                     FirebaseAuth.getInstance().signInWithCredential(credential)
                             .addOnCompleteListener {
                                 if (it.isSuccessful) {
-                                    sendToHome(account.email ?: "", ProviderType.GOOGLE)
+                                    storeNewUser(User(account.email ?: "", account.displayName ?: "",  ProviderType.GOOGLE, false))
+                                    sendToHome(account.email ?: "", account.displayName ?: "", ProviderType.GOOGLE)
                                 } else {
                                     showLoginAlert()
                                 }
@@ -148,5 +169,13 @@ class LoginActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    private fun storeNewUser(user: User) {
+
+
+        db.collection("users").document(user.email).set(user)
+
+
     }
 }

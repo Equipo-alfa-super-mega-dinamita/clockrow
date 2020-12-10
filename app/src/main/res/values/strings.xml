@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clockrow</string>
+    <string name="app_name">Krow</string>
     <string name="add_word">Añadir tarea</string>
     <string name="no_task">No tienes tareas pendientes.</string>
 
@@ -44,5 +44,8 @@
     <string name="user_provider_shrpref">SHARED_PREF_PROVIDER</string>
     <string name="shrpref_file">co.edu.unal.clockrow.SHARED_PREFERENCES</string>
     <string name="purchase_error">La compra no se pudo completar.</string>
+    <string name="user_username_shrpref">SHARED_PREF_USERNAME</string>
+    <string name="user_premium_shrpref">SHARED_PREF_PREMIUM</string>
+    <string name="user_logged_shrpref">SHARED_PREF_LOGGED</string>
 
 </resources>
