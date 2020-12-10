@@ -52,6 +52,10 @@ public class ClockViewModel extends ViewModel {
 
     }
 
+    public void setmBreak(boolean mBreak) {
+        this.mBreak = mBreak;
+    }
+
     public boolean isPause() {
         return pause;
     }
