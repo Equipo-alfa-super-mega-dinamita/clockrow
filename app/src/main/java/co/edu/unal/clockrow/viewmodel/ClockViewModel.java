@@ -22,6 +22,7 @@ public class ClockViewModel extends ViewModel {
     private final Marathon mMarathon;
     private TimeControlMethod method = TimeControlMethod.POMODORO;
     private boolean mBreak;
+    private boolean pause;
 
     private Context ctx;
 
@@ -51,6 +52,14 @@ public class ClockViewModel extends ViewModel {
 
     }
 
+    public boolean isPause() {
+        return pause;
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
+    }
+
     public boolean ismBreak() {
 
         switch (this.method) {
@@ -75,6 +84,7 @@ public class ClockViewModel extends ViewModel {
         this.mPomodoro = new Pomodoro();
         this.mSavingMethod = new SavingMethod();
         this.mMarathon = new Marathon();
+        this.pause = true;
         switch (method) {
             case POMODORO:
                 currentTime = Clock.clockText(mPomodoro.getWorkTime());
@@ -120,6 +130,7 @@ public class ClockViewModel extends ViewModel {
                 startMarathon(listener);
                 break;
         }
+        this.pause = false;
     }
 
     private void startPomodoro(final TimeListener<String> listener) {
@@ -196,15 +207,14 @@ public class ClockViewModel extends ViewModel {
                 }
                 break;
         }
-
-
+        this.pause = true;
     }
 
     public void reset() {
         switch (method) {
             case POMODORO:
-                currentTime = Clock.clockText(mPomodoro.getTimeLeftInMillis());
                 mPomodoro.reset();
+                currentTime = Clock.clockText(mPomodoro.getTimeLeftInMillis());
                 break;
             case SAVING_METHOD:
                 mSavingMethod.reset();

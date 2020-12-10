@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.activity.ClockActivity"
-    android:background="@color/colorSecondaryDark"
+    android:background="@drawable/pomodoro_gradient"
     android:id="@+id/clockActivity">
 
     <TextView
@@ -15,7 +15,7 @@
         android:textSize="30sp"
         android:layout_marginTop="@dimen/big_padding"
         android:ellipsize="end"
-        android:textColor="@color/colorSecondaryLight"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,51 +44,54 @@
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
         app:layout_constraintTop_toTopOf="@+id/progress_bar" />
 
-    <Button
-        android:id="@+id/startButtonClock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        android:textColor="@color/colorSecondaryLight"
-        app:layout_constraintStart_toStartOf="@+id/progress_bar"
-        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
-
-    <Button
-        android:id="@+id/puaseButtonClock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="pause"
-        android:textColor="@color/colorSecondaryLight"
-        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
-        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
-
-    <Button
-        android:id="@+id/resetButtonClock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorSecondaryLight"
-        android:text="reset"
-        app:layout_constraintStart_toStartOf="@+id/startButtonClock"
-        app:layout_constraintTop_toBottomOf="@+id/startButtonClock" />
-
-    <Button
-        android:id="@+id/shift"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorSecondaryLight"
-        android:text="shift"
-        app:layout_constraintEnd_toEndOf="@+id/puaseButtonClock"
-        app:layout_constraintTop_toBottomOf="@+id/puaseButtonClock" />
-
     <TextView
         android:id="@+id/methodText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textColor="@color/white"
         android:textSize="30sp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/timeText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/task_title" />
+
+    <Button
+        android:id="@+id/startButtonClock"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_button_circle"
+        android:drawableLeft="@drawable/ic_baseline_play_arrow_2"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
+
+    <Button
+        android:id="@+id/shift"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_button_circle"
+        android:drawableLeft="@drawable/ic_baseline_change_circle_24"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+        app:layout_constraintStart_toEndOf="@+id/startButtonClock"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/resetButtonClock"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_button_circle"
+        android:drawableLeft="@drawable/ic_baseline_refresh_24"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/startButtonClock"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar"
+        android:visibility="invisible"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

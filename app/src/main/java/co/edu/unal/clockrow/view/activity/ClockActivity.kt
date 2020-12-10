@@ -42,7 +42,6 @@ class ClockActivity : AppCompatActivity(), View.OnClickListener {
         clockText = findViewById(R.id.timeText)
         methodText = findViewById(R.id.methodText)
         startButton = findViewById(R.id.startButtonClock)
-        pauseButton = findViewById(R.id.puaseButtonClock)
         resetButton = findViewById(R.id.resetButtonClock)
         shiftButton = findViewById(R.id.shift)
 
@@ -94,26 +93,37 @@ class ClockActivity : AppCompatActivity(), View.OnClickListener {
         return true
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.startButtonClock -> clockViewModel!!.start(object : TimeListener<String?> {
-                override fun onTimerResponse(response: String?) {
-                    updateText()
-                    updateProgressBar()
-                }
+            R.id.startButtonClock -> {
+                if (clockViewModel!!.isPause) {
+                    //Start
+                    hideButtons()
+                    startButton?.setCompoundDrawablesWithIntrinsicBounds(getDrawable(R.drawable.ic_baseline_pause_24),null,null,null)
+                    clockViewModel!!.start(object : TimeListener<String?> {
+                        override fun onTimerResponse(response: String?) {
+                            updateText()
+                            updateProgressBar()
+                        }
 
-                override fun onTimerFinish(response: String?) {
+                        override fun onTimerFinish(response: String?) {
+                            updateText()
+                            updateProgressBar()
+                            Log.d(TAG, clockViewModel!!.currentTime)
+                        }
+                    })
+                }else{
+                    //Pause
+                    showButtons()
+                    startButton?.setCompoundDrawablesWithIntrinsicBounds(getDrawable(R.drawable.ic_baseline_play_arrow_2),null,null,null)
+                    clockViewModel!!.pause()
                     updateText()
                     updateProgressBar()
-                    Log.d(TAG, clockViewModel!!.currentTime)
                 }
-            })
-            R.id.puaseButtonClock -> {
-                clockViewModel!!.pause()
-                updateText()
-                updateProgressBar()
             }
             R.id.resetButtonClock -> {
+                hideButtons()
                 clockViewModel!!.reset()
                 updateText()
                 updateProgressBar()
@@ -131,16 +141,17 @@ class ClockActivity : AppCompatActivity(), View.OnClickListener {
         private const val TAG = "ClockActivity"
     }
 
-    private fun translateMethodName(title: TimeControlMethod): String{
-        var textTrans:String = ""
-        textTrans = when(title){
+    private fun translateMethodName(title: TimeControlMethod): String {
+        var textTrans: String = ""
+        textTrans = when (title) {
             TimeControlMethod.MARATHON -> getString(R.string.method_marathon)
             TimeControlMethod.POMODORO -> getString(R.string.method_pomododoro)
             TimeControlMethod.SAVING_METHOD -> getString(R.string.method_saving)
         }
         return textTrans
     }
-    private fun updateProgressBar(){
+
+    private fun updateProgressBar() {
         val timeObj: Long
         val timeLeft: Long
         val progress: Long
@@ -158,21 +169,40 @@ class ClockActivity : AppCompatActivity(), View.OnClickListener {
                 timeLeft = clockViewModel!!.marathon.timeLeftInMillis
             }
         }
-        progress = 100 - ((timeLeft * 100)/timeObj)
+        progress = 100 - ((timeLeft * 100) / timeObj)
         progress_bar.progress = progress.toInt()
     }
-    private fun updateText(){
+
+    private fun updateText() {
         clockText!!.text = clockViewModel!!.currentTime
     }
-    private fun setBackGColor (){
-        when(clockViewModel!!.method){
-            TimeControlMethod.POMODORO -> clockActivity.setBackgroundColor(getColor(R.color.pomodoro))
-            TimeControlMethod.SAVING_METHOD -> clockActivity.setBackgroundColor(getColor(R.color.saving))
-            TimeControlMethod.MARATHON -> clockActivity.setBackgroundColor(getColor(R.color.colorSecondaryDark))
-            else ->  clockActivity.setBackgroundColor(getColor(R.color.colorSecondaryDark))
+
+    private fun setBackGColor() {
+        when (clockViewModel!!.method) {
+            TimeControlMethod.POMODORO -> clockActivity.setBackgroundResource(R.drawable.pomodoro_gradient)
+            TimeControlMethod.SAVING_METHOD -> clockActivity.setBackgroundResource(R.drawable.saving_gradient)
+            TimeControlMethod.MARATHON -> clockActivity.setBackgroundResource(R.drawable.marathon_gradient)
+            else -> clockActivity.setBackgroundColor(getColor(R.color.colorSecondaryDark))
         }
-        if (clockViewModel!!.ismBreak()){
-            clockActivity.setBackgroundColor(getColor(R.color.breaks))
+        if (clockViewModel!!.ismBreak()) {
+            clockActivity.setBackgroundResource(R.drawable.break_gradient)
         }
+    }
+
+    private fun showButtons(){
+        if (clockViewModel!!.method != TimeControlMethod.POMODORO){
+            shiftButton?.visibility = View.VISIBLE
+        }else{
+            shiftButton?.visibility = View.INVISIBLE
+        }
+        if (!clockViewModel!!.ismBreak()){
+            resetButton?.visibility = View.VISIBLE
+        }
+    }
+    private fun hideButtons(){
+        if (clockViewModel!!.method != TimeControlMethod.POMODORO){
+            shiftButton?.visibility = View.INVISIBLE
+        }
+        resetButton?.visibility = View.INVISIBLE
     }
 }
