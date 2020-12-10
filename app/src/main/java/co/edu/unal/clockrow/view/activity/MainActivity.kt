@@ -91,34 +91,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             true
         }
 
-        val menu = navigationView.menu
-        if ( getSharedPreferences( getString(R.string.shrpref_file), Context.MODE_PRIVATE).getString(getString(R.string.user_email_shrpref), null) != null )
-        {
-            menu.findItem(R.id.logout_item).isVisible = false
-            menu.findItem(R.id.login_item).isVisible = true
-        }
-        else {
-            menu.findItem(R.id.login_item).isVisible = false
-            menu.findItem(R.id.logout_item).isVisible = true
-        }
-
-        getSharedPreferences( getString(R.string.shrpref_file), Context.MODE_PRIVATE).registerOnSharedPreferenceChangeListener { sharedPreferences, s ->
-
-            Log.i("PREFERENCIAS", "$s")
-            if (  sharedPreferences.getBoolean(getString(R.string.user_logged_shrpref), false )) {
-                if (sharedPreferences.getString(s, null) != null) {
-                    Log.i("PREFERENCIAS", "Login habilitado")
-                    menu.findItem(R.id.logout_item).isVisible = false
-                    menu.findItem(R.id.login_item).isVisible = true
-                } else {
-                    Log.i("PREFERENCIAS", "Login deshabilitado")
-                    menu.findItem(R.id.login_item).isVisible = false
-                    menu.findItem(R.id.logout_item).isVisible = true
-                }
-            }
-        }
-
-
     }
 
 
