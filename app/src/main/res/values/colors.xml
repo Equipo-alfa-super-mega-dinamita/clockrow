@@ -3,10 +3,10 @@
     <color name="colorPrimary">#3D5099</color>
     <color name="colorPrimaryDark">#1D1153</color>
     <color name="colorAccent">#FF9951</color>
-    <color name="white">#E3CBEB</color>
+    <color name="white">#FFFFFF</color>
     <color name="colorSecondaryLight">#E3CBEB</color>
     <color name="colorSecondaryDark">#2F1935</color>
     <color name="pomodoro">#FF3E03</color>
-    <color name="saving">#176E1A</color>
+    <color name="saving">#0C4A0F</color>
     <color name="breaks">#00BCD4</color>
 </resources>
